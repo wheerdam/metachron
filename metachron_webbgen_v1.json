@@ -1,0 +1,84 @@
+{
+	"name":"metachron",
+	"dbtype":"psql",
+	"dbhost":"127.0.0.1",
+	"dbport":"5432",
+	"dblogon":"metachron",
+	"dbpassword":"db",
+	"api_prefix":"/api",
+	"static-path":"./static",
+	"static-root":"./root",
+	"upload-path":"./uploads",
+	"roles": [ "data_admin", "posters" ],
+	"tables": [
+		{
+			"name":"post",
+			"data_admin_role":"data_admin",
+			"log_user":false,
+			"public_read":true,
+			"public_list":true,
+			"fields": [
+				{
+					"name":"title",
+					"type":"text",
+					"required":true,
+					"searchable":true
+				},
+				{
+					"name":"content",
+					"type":"text",
+					"required":true,
+					"searchable":true
+				},
+				{
+					"name":"attachment",
+					"type":"file_upload"
+				},
+				{
+					"name":"date",
+					"db-index":true,
+					"type":"servertime",
+					"sortable":true
+				}
+			]
+		},
+		{
+			"name":"draft",
+			"read_roles":[ ],
+			"write_roles":[ "posters" ],
+			"edit_roles":[ ],
+			"delete_roles":[ ],
+			"data_admin_role":"data_admin",
+			"log_user":true,
+			"dynamic_roles":true,
+			"creator_grant_admin":true,
+			"creator_grant_edit":true,
+			"public_read":false,
+			"public_list":false,
+			"fields": [
+				{
+					"name":"title",
+					"type":"text",
+					"required":true,
+					"searchable":true
+				},
+				{
+					"name":"content",
+					"type":"text",
+					"required":true,
+					"searchable":true
+				},
+				{
+					"name":"attachment",
+					"type":"file_upload"
+				},
+				{
+					"name":"date",
+					"db-index":true,
+					"type":"servertime",
+					"sortable":true
+				}
+			]
+		}
+	]
+}
