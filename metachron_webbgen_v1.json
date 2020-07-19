@@ -14,7 +14,8 @@
 		{
 			"name":"post",
 			"data_admin_role":"data_admin",
-			"log_user":false,
+			"write_roles":[ "posters" ],
+			"log_user":true,
 			"public_read":true,
 			"public_list":true,
 			"fields": [
